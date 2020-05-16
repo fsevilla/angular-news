@@ -1,0 +1,16 @@
+<h2>News</h2>
+
+<form (submit)="doSearch()">
+  <input type="text" [(ngModel)]="search" name="buscar">
+  <button [disabled]="!search">Buscar</button>
+</form>
+
+<ul *ngIf="news.length > 0">
+  <li *ngFor="let item of news">{{item.title}}</li>
+</ul>
+<div *ngIf="news.length > 0">
+  <button [disabled]="page==1" (click)="goPrev()">Anterior</button>
+  <button [disabled]="page==5" (click)="goNext()">Siguiente</button>
+</div>
+
+<p *ngIf="news.length == 0">No hay resultados</p>

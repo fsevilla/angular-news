@@ -1,0 +1,41 @@
+<div class="container-sm">
+  <h2>Top News</h2>
+
+  <select class="form-control mb-4" name="paises" [(ngModel)]="country" (change)="doSearch()">
+    <option value="mx">Mexico</option>
+    <option value="us">Estados Unidos</option>
+  </select>
+
+  <!-- <ul>
+    <li *ngFor="let item of headlines">
+      {{item.title}} 
+      ( {{item.author}} ), 
+      Published at: {{item.publishedAt | date:'d/MM/yyyy'}}
+    </li>
+  </ul> -->
+
+  <div class="row">
+    <div *ngFor="let item of headlines" class="col-md-3">
+      <div class="card" (click)="openModal(item, template)">
+        <img src="{{item.urlToImage}}" />
+        <div>{{item.title}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Noticia</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h3>{{currentNews.title}}</h3>
+    <img src="{{currentNews.urlToImage}}" alt="">
+    <div>{{currentNews.content}}</div>
+    <a href="{{currentNews.url}}" target="_new">Ver mas</a>
+  </div>
+</ng-template>
